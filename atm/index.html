@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="atm-container">
+        <div class="atm-header">
+            <i class="fas fa-university"></i>
+            <h1>SecureBank ATM</h1>
+        </div>
+        
+        <div class="screen">
+            <div class="screen-content">
+                <!-- Welcome Screen -->
+                <div id="welcome-screen" class="screen-panel active">
+                    <div class="welcome-message">
+                        <i class="fas fa-credit-card welcome-icon"></i>
+                        <h2>Welcome to SecureBank ATM</h2>
+                        <p>Your trusted banking partner</p>
+                        <button class="btn btn-primary" onclick="showMainMenu()">
+                            <i class="fas fa-arrow-right"></i> Start Transaction
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Menu Screen -->
+                <div id="main-menu" class="screen-panel">
+                    <h2>Select Transaction</h2>
+                    <div class="menu-options">
+                        <button class="menu-btn" onclick="checkBalance()">
+                            <i class="fas fa-wallet"></i>
+                            <span>Check Balance</span>
+                        </button>
+                        <button class="menu-btn" onclick="showWithdrawScreen()">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Withdraw Cash</span>
+                        </button>
+                        <button class="menu-btn" onclick="showChangePinScreen()">
+                            <i class="fas fa-key"></i>
+                            <span>Change PIN</span>
+                        </button>
+                        <button class="menu-btn exit-btn" onclick="exitATM()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Exit</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Balance Screen -->
+                <div id="balance-screen" class="screen-panel">
+                    <div class="balance-info">
+                        <i class="fas fa-chart-line balance-icon"></i>
+                        <h2>Account Balance</h2>
+                        <div class="balance-amount" id="balance-display">$0.00</div>
+                        <p class="account-info">Account: ****567890</p>
+                        <button class="btn btn-secondary" onclick="showMainMenu()">
+                            <i class="fas fa-arrow-left"></i> Back to Menu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Withdraw Screen -->
+                <div id="withdraw-screen" class="screen-panel">
+                    <h2>Cash Withdrawal</h2>
+                    <div class="form-group">
+                        <label for="withdraw-amount">Enter Amount ($)</label>
+                        <input type="number" id="withdraw-amount" placeholder="0.00" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="withdraw-pin">Enter PIN</label>
+                        <input type="password" id="withdraw-pin" placeholder="****" maxlength="4">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="withdrawCash()">
+                            <i class="fas fa-money-bill-wave"></i> Withdraw
+                        </button>
+                        <button class="btn btn-secondary" onclick="showMainMenu()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Change PIN Screen -->
+                <div id="change-pin-screen" class="screen-panel">
+                    <h2>Change PIN</h2>
+                    <div class="form-group">
+                        <label for="new-pin">Enter New 4-Digit PIN</label>
+                        <input type="password" id="new-pin" placeholder="****" maxlength="4">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-pin">Confirm New PIN</label>
+                        <input type="password" id="confirm-pin" placeholder="****" maxlength="4">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="changePIN()">
+                            <i class="fas fa-key"></i> Update PIN
+                        </button>
+                        <button class="btn btn-secondary" onclick="showMainMenu()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Message Screen -->
+                <div id="message-screen" class="screen-panel">
+                    <div class="message-content">
+                        <div id="message-icon" class="message-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h2 id="message-title">Message</h2>
+                        <p id="message-text">Transaction completed successfully!</p>
+                        <button class="btn btn-primary" id="message-btn" onclick="showMainMenu()">
+                            <i class="fas fa-check"></i> Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="atm-footer">
+            <div class="status-indicators">
+                <div class="status-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>Online</span>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

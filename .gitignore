@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+# Node.js
+node_modules/
+.env
+
+=======
+# Node.js
+node_modules/
+.env
+
+>>>>>>> 5bfcf05 (Initial Commit)
