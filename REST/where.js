@@ -1,3 +1,5 @@
+//Display the specific data based on the id provided in the URL
+
 const express = require('express');
 const app = express();
 const mysql = require('mysql2');
@@ -27,6 +29,8 @@ app.get('/users/:id', (req, res) => {
     db.query('SELECT * FROM user WHERE id = ?', [req.params.id], (err, results) => {
         if (err) {
             return res.status(500).send(err);
+        } if (results.length === 0) {
+            return res.status(404).send('User not found');
         }
         res.json(results);  
     });
