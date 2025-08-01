@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Bank Project</h1>
+    </header>
+    <main>
+        <section id="account-info">
+            <h2>Account Information</h2>
+            <div id="account-details"></div>
+        </section>
+        <section id="transaction-history">
+            <h2>Transaction History</h2>
+            <div id="transactions"></div>
+        </section>
+        <section id="buttons">
+            <button id="deposit-button" >Deposit</button>
+            <button id="withdraw-button">Withdraw</button>
+            <button id="balance-button">Balance</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Bank Project</p>
+    </footer>
+</body>
+<script>
+    // JavaScript code to handle button clicks and fetch data from the server
+    document.getElementById('deposit-button').addEventListener('click', function() {
+        window.location.href = "deposit.html"; // Redirect to deposit page
+    });
+
+    document.getElementById('withdraw-button').addEventListener('click', function() {
+        window.location.href = "withdraw.html"; // Redirect to withdraw page
+    });
+
+    document.getElementById('balance-button').addEventListener('click', function() {
+        window.location.href = "balance.html"; // Redirect to transfer page
+    });
+</script>
+</html>

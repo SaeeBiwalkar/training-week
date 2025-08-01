@@ -39,4 +39,8 @@ app.put('/users/:id', (req, res) => {
 
 /*Invoke this in PowerShell to test the put method:
  Invoke-RestMethod -Uri http://localhost:3000/users/2 -Method PUT -Headers @{"Content-Type" = "application/json"} -Body '{"name":"John Doe lala","email":"john.doe@gmail.com"}'
-*/
+
+ const {name, email } = req.body;
+ const id = req.params.id;
+ if we write thing in url we use req.params.id and if we write in body we use req.body.name and req.body.email
+ */
