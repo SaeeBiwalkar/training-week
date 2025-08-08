@@ -31,4 +31,19 @@ app.post('/create', (req, res) => {
     });
 });
 
+app.get('/accounts/:id', (req, res) => {
+    const sql = 'SELECT * FROM bank_account WHERE account_number = ?';
+    db.query(sql, [req.params.id], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Failed to fetch account' });
+        }
+        if (results.length === 0) {
+            return res.status(404).send({ error: 'Account not found' });
+        }
+        res.send(results[0]);
+    }
+    );
+});   
+
 module.exports = { app, db }; // export both

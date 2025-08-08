@@ -68,3 +68,18 @@ app.put('/withdraw/:id', (req, res) => {
         });
 
     });
+
+app.get('/balance/:id', (req, res) => {
+    const account_number = req.params.id;
+
+    db.query('SELECT balance FROM bank_account WHERE account_number = ?', [account_number], (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            return res.status(500).json({ error: 'Database query failed' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Account not found' });
+        }
+        res.json({ balance: results[0].balance });
+    });
+});

@@ -13,9 +13,9 @@
         <h2>ATM Simulator withdraw-amount</h2><br><br>
         <h3>Enter user details : </h3><br>
         <br><br>
-        <form id="withdraw-form">
-            <label for="account-number">Account Number:</label>
-            <input type="text" id="account-number" name="account-number" required>
+        <form id="withdraw-form" hidden>
+            <label for="withdaw-account-number">Account Number:</label>
+            <input type="text" id="withdaw-account-number" name="withdaw-account-number" required>
             <br><br>
             <label for="pin">PIN:</label>
             <input type="password" id="pin" name="pin" required>
@@ -26,6 +26,15 @@
             <label for="balance">Current Balance</label>
             <p id="balance">Loading...</p>
             <button type="submit">Withdraw</button>
+        </form>
+        <form id="account-form">
+            <label for="display-account-number">Account Number:</label>
+            <input type="text" id="display-account-number" name="display-account-number" required>
+            <br><br>
+            <button type="button" id="check-balance">Check Balance</button>
+            <br><br>
+            <p id="balance">Current Balance: Not checked yet</p>
+        </form>
     </body>
     <script>
         document.getElementById('withdraw-form').addEventListener('submit', async function(event) {
@@ -60,6 +69,26 @@
             } catch (error) {
                 console.error('Error:', error);
                 alert('❌ An error occurred while processing your request.');
+            }
+        });
+
+        document.getElementById('check-balance').addEventListener('click', async function() {
+            const accountNumber = document.getElementById('account-number').value;
+    
+            try {
+                const response = await fetch(`/balance/${accountNumber}`);
+                const result = await response.json();
+    
+                if (response.ok) {
+                    document.getElementById('balance').textContent = `Current Balance: ${result.balance}`;
+                    document.getElementById('withdraw-form').hidden = false; // Show the withdraw form
+                } else {
+                    alert(`❌ Error: ${result.error}`);
+                }
+    
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ An error occurred while checking the balance.');
             }
         });
     </script>
